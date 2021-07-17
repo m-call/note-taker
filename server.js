@@ -1,6 +1,5 @@
-// Importing necessary frameworks and libraries
+// Importing necessary Express frameworks for the server
 const express = require('express');
-const fs = require('fs');
 
 // Setting up express as an app variable and setting the port for the server
 const app = express();
@@ -11,6 +10,7 @@ app.use(express.json());
 
 app.use(express.static('public'));
 
+// Importing the apiRoutes and htmlRoutes files
 require('./routes/apiRoutes')(app);
 require('./routes/htmlRoutes')(app);
 
