@@ -10,14 +10,12 @@ module.exports = (app) => {
 
     // Posts JSON data to the db when a new note is created
     app.post('/api/notes', (req, res) => {
-
         // Creates a new note in object form assigning an id, title, and text
         let newNote = {
             id: uuidv4(),
             title: req.body.title,
             text: req.body.text
         };
-
         // Adds the newly created note object to the db.json file
         db.push(newNote);
 
@@ -33,12 +31,22 @@ module.exports = (app) => {
     });
 
     // Removes JSON data from the db when a corresponding note is deleted
-    // app.delete('/api/notes/:id'), (req, res) => {
-    //     for (i = 0; i < db.length; i++) {
-    //         if (db[i].id == req.params.id) {
-    //             console.log('test');
-    //         }
-    //     }
-    // }
+    app.delete('/api/notes/:id', (req, res) => {
+        for (let i = 0; i < db.length; i++) {
+            if (db[i].id == req.params.id) {
+                db.splice(i, 1);
+                break;
+            }
+        };
 
-};
+        let newNotes = JSON.stringify(db);
+
+        fs.writeFile('./db/db.json', newNotes, (err) => {
+            if (err) throw err;
+            return;
+        });
+
+        return res.json(db);
+    });
+
+}
