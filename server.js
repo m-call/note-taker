@@ -1,4 +1,4 @@
-// Importing necessary Express frameworks for the server
+// Importing necessary Express framework for the server
 const express = require('express');
 
 // Setting up express as an app variable and setting the port for the server
