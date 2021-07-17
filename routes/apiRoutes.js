@@ -8,7 +8,7 @@ module.exports = (app) => {
     // Gets the JSON data from the db 
     app.get('/api/notes', (req, res) => res.json(db));
 
-    // Posts JSON data to the db
+    // Posts JSON data to the db when a new note is created
     app.post('/api/notes', (req, res) => {
 
         // Creates a new note in object form assigning an id, title, and text
@@ -32,12 +32,13 @@ module.exports = (app) => {
 
     });
 
-    app.delete('/api/notes/:id'), (req, res) => {
-        for (i = 0; i < db.length; i++) {
-            if (db[i].id == req.params.id) {
-                console.log('test');
-            }
-        }
-    }
+    // Removes JSON data from the db when a corresponding note is deleted
+    // app.delete('/api/notes/:id'), (req, res) => {
+    //     for (i = 0; i < db.length; i++) {
+    //         if (db[i].id == req.params.id) {
+    //             console.log('test');
+    //         }
+    //     }
+    // }
 
 };
